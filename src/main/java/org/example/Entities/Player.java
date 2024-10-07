@@ -1,32 +1,22 @@
 package org.example.Entities;
 
 import org.example.Enums.Action;
-import java.util.Random;
+import org.example.Enums.Points;
 
-public class Player {
-    private String name;
-    private int coins;
+public abstract class Player {
+    private final Score score;
 
-    public Player(String name) {
-        this.name = name;
-        this.coins = 0;
+    public Player() {
+        this.score = new Score();
     }
 
-    public String getName() {
-        return name;
+    public int getScore() {
+        return this.score.points();
     }
 
-    public int getCoins() {
-        return coins;
+    public void addCoins(Points points) {
+        this.score.add(points.getValue());
     }
 
-    public void addCoins(int coins) {
-        this.coins += coins;
-    }
-
-    public Action chooseAction() {
-        Random random = new Random();
-        return random.nextInt(2) == 0 ? Action.COOPERATE : Action.CHEAT;
-    }
-
+    public abstract Action chooseAction();
 }
