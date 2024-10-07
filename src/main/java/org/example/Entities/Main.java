@@ -34,7 +34,9 @@ public class Main {
             System.out.println(player1.getName() + " has " + player1.getCoins() + " coins.");
             System.out.println(player2.getName() + " has " + player2.getCoins() + " coins.");
             System.out.println();
+
         }
+
 
         System.out.println("Final Results:");
         System.out.println(player1.getName() + " has " + player1.getCoins() + " coins.");

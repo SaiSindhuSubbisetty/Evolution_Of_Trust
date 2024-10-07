@@ -18,5 +18,6 @@ public class EvolutionOfTrustMachine {
             player2.addCoins(3);
         }
     }
+
 }
 

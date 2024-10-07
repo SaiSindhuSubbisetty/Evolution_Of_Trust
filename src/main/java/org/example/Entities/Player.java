@@ -28,4 +28,5 @@ public class Player {
         Random random = new Random();
         return random.nextInt(2) == 0 ? Action.COOPERATE : Action.CHEAT;
     }
+
 }
