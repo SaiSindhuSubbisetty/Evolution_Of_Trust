@@ -3,8 +3,12 @@ package org.example.Entities;
 import org.example.Enums.Action;
 
 public class Cooperator extends Player {
+    public Cooperator() {
+        super(true);
+    }
+
     @Override
-    public Action chooseAction() {
-        return Action.COOPERATE;
+    boolean updateCooperation(Player otherPlayer) {
+        return true;
     }
 }

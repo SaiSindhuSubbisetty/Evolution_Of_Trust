@@ -1,22 +1,46 @@
 package org.example.Entities;
 
-import org.example.Enums.Action;
-import org.example.Enums.Points;
-
 public abstract class Player {
-    private final Score score;
+    final Score score;
+    protected boolean willCooperate;
 
-    public Player() {
+    private static final int THREE_POINTS = 3;
+    private static final int NEGATIVE_ONE_POINT = -1;
+
+    public Player(boolean willCooperate) {
         this.score = new Score();
+        this.willCooperate = willCooperate;
     }
 
-    public int getScore() {
-        return this.score.points();
+    public void gain() {
+        this.score.add(THREE_POINTS);
     }
 
-    public void addCoins(Points points) {
-        this.score.add(points.getValue());
+    public void invest() {
+        this.score.add(NEGATIVE_ONE_POINT);
     }
 
-    public abstract Action chooseAction();
+    public void transactWith(Player otherPlayer) {
+        this.transact(otherPlayer);
+
+        boolean currentPlayerWill = this.updateCooperation(otherPlayer);
+        boolean otherPlayerWill = otherPlayer.updateCooperation(this);
+
+        this.willCooperate = currentPlayerWill;
+        otherPlayer.willCooperate = otherPlayerWill;
+    }
+
+    abstract boolean updateCooperation(Player otherPlayer);
+
+    private void transact(Player otherPlayer) {
+        if (this.willCooperate) {
+            this.invest();
+            otherPlayer.gain();
+        }
+
+        if (otherPlayer.willCooperate) {
+            this.gain();
+            otherPlayer.invest();
+        }
+    }
 }
